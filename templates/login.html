@@ -10,7 +10,7 @@
         <input type="password" id="password" name="password" placeholder="Votre mot de passe" required>
         <button type="submit">Se connecter</button>
     </form>
-    <p class="alt-action">Pas encore inscrit ? <a href="{{ url_for('signup') }}">Créer un compte</a></p>
+    <p class="alt-action">Pas encore inscrit ? <a href="{{ url_for('auth.signup') }}">Créer un compte</a></p>
 </div>
 {% endblock %}
 

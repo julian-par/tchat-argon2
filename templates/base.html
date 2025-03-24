@@ -24,10 +24,10 @@
                 <a href="{{ url_for('chat') }}">Chat</a>
                 <a href="{{ url_for('lore') }}">Lore</a>
                 <a href="{{ url_for('security') }}">Sécurité</a>
-                <a href="{{ url_for('logout') }}">Déconnexion</a>
+                <a href="{{ url_for('auth.logout') }}">Déconnexion</a>
             {% else %}
-                <a href="{{ url_for('login') }}">Connexion</a>
-                <a href="{{ url_for('signup') }}">Inscription</a>
+                <a href="{{ url_for('auth.login') }}">Connexion</a>
+                <a href="{{ url_for('auth.signup') }}">Inscription</a>
                 <a href="{{ url_for('lore') }}">Lore</a>
                 <a href="{{ url_for('security') }}">Sécurité</a>
             {% endif %}
@@ -47,7 +47,7 @@
         {% block content %}{% endblock %}
     </main>
     <footer>
-        <p>&copy; 2023 Nebula Nexus - L'Agora cosmique des esprits libres</p>
+        <p>&copy; 2025 Nebula Nexus - L'Agora cosmique des esprits libres</p>
     </footer>
 </body>
 </html>
