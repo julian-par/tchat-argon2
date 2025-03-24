@@ -2,7 +2,8 @@
 from flask import Flask, render_template, redirect, url_for, session, request, flash
 from config import Config
 from models import db, Message
-from auth import auth_bp  # Import du Blueprint d'authentification
+from auth import auth_bp  # Blueprint d'authentification
+from group_chat import group_bp  # Blueprint pour le chat de groupe
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -12,8 +13,9 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
-# Enregistrement du Blueprint pour les routes d'authentification
+# Enregistrement des Blueprints
 app.register_blueprint(auth_bp)
+app.register_blueprint(group_bp)
 
 @app.route('/')
 def home():
@@ -27,7 +29,7 @@ def home():
 
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
-    """Page du chat : affichage et envoi de messages."""
+    """Page du chat classique : affichage et envoi de messages."""
     if 'user_id' not in session:
         return redirect(url_for('auth.login'))
     if request.method == 'POST':
@@ -53,7 +55,6 @@ def security():
 def argon2_secret():
     """Page secrète détaillant le fonctionnement d'Argon2."""
     return render_template('argon2_secret.html')
-
 
 if __name__ == '__main__':
     app.run(debug=True)

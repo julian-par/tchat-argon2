@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Gestion du Groupe - {{ group.name }}{% endblock %}
+{% block content %}
+  <h2>Gestion du Groupe : {{ group.name }}</h2>
+
+  <section class="group-section">
+    <h3>Membres du groupe</h3>
+    {% if members %}
+      <ul class="member-list">
+        {% for m in members %}
+          <li>
+            Utilisateur {{ m.user_id }}
+            {% if m.user_id != group.owner_id %}
+            <form method="POST" action="{{ url_for('group.manage_group', group_id=group.id) }}" class="inline-form">
+              <input type="hidden" name="member_id" value="{{ m.user_id }}">
+              <button type="submit" name="action" value="remove">Retirer</button>
+            </form>
+            {% else %}
+              (Propriétaire)
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Aucun membre accepté pour l'instant.</p>
+    {% endif %}
+  </section>
+
+  <section class="group-section">
+    <h3>Invitations en attente</h3>
+    {% if pending_invitations %}
+      <ul class="member-list">
+        {% for inv in pending_invitations %}
+          <li>Utilisateur {{ inv.user_id }} (En attente)</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Aucune invitation en attente.</p>
+    {% endif %}
+  </section>
+
+  <section class="group-section">
+    <h3>Inviter un membre</h3>
+    <form method="POST" action="{{ url_for('group.invite_to_group', group_id=group.id) }}">
+      <div class="form-group">
+        <label for="username">Nom d'utilisateur :</label>
+        <input type="text" name="username" id="username" placeholder="Nom d'utilisateur" required>
+      </div>
+      <button type="submit">Envoyer l'invitation</button>
+    </form>
+  </section>
+
+  <section class="group-section">
+    <a class="btn" href="{{ url_for('group.group_chat', group_id=group.id) }}">Retour au Chat</a>
+  </section>
+{% endblock %}

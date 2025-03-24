@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Créer un Groupe - Nebula Nexus{% endblock %}
+{% block content %}
+  <h2>Créer un Groupe Privé</h2>
+  <form method="POST" action="{{ url_for('group.create_group') }}">
+    <div class="form-group">
+      <label for="group_name">Nom du groupe :</label>
+      <input type="text" name="group_name" id="group_name" placeholder="Entrez un nom de groupe" required>
+    </div>
+    <button type="submit">Créer le Groupe</button>
+  </form>
+{% endblock %}

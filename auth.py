@@ -31,6 +31,7 @@ def verify_user(user, password):
     except exceptions.VerifyMismatchError:
         return False
 
+
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     """Page de connexion."""

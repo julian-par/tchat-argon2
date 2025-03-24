@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Inviter un Utilisateur - {{ group.name }}{% endblock %}
+{% block content %}
+  <h2>Inviter un Utilisateur dans "{{ group.name }}"</h2>
+  <form method="POST" action="{{ url_for('group.invite_to_group', group_id=group.id) }}">
+    <div class="form-group">
+      <label for="username">Nom d'utilisateur :</label>
+      <input type="text" name="username" id="username" placeholder="Nom d'utilisateur" required>
+    </div>
+    <button type="submit">Envoyer l'Invitation</button>
+  </form>
+{% endblock %}

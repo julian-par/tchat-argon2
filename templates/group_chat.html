@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Chat de Groupe - {{ group.name }}{% endblock %}
+{% block content %}
+  <h2>Chat de Groupe : {{ group.name }}</h2>
+  
+  <div class="chat-messages">
+    {% if messages %}
+      {% for msg in messages %}
+        <div class="chat-message">
+          <span class="sender">Utilisateur {{ msg.sender_id }} :</span>
+          <span class="message">{{ msg.content }}</span>
+          <span class="timestamp">{{ msg.timestamp.strftime('%d/%m/%Y %H:%M:%S') }}</span>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>Aucun message pour l'instant.</p>
+    {% endif %}
+  </div>
+
+  <form method="POST" action="{{ url_for('group.send_group_message', group_id=group.id) }}">
+    <div class="form-group">
+      <label for="message">Votre message :</label>
+      <textarea name="message" id="message" placeholder="Tapez votre message ici…" required></textarea>
+    </div>
+    <button type="submit">Envoyer</button>
+  </form>
+  
+  {% if session.user_id and session.user_id != group.owner_id %}
+    <!-- Possibilité d'ajouter un lien pour quitter le groupe ou afficher les infos du groupe -->
+  {% endif %}
+{% endblock %}

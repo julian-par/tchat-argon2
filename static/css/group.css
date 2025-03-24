@@ -1,0 +1,56 @@
+/* static/css/group.css */
+
+/* Styles pour la gestion des groupes */
+.group-section {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.member-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.member-list li {
+    padding: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inline-form {
+    display: inline;
+}
+
+.inline-form button {
+    background: #e74c3c;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.inline-form button:hover {
+    background: #c0392b;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background: #ffd700;
+    color: #000;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: #e6c200;
+}

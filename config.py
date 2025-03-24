@@ -9,4 +9,3 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # Exemple de durée de session configurable (ici 30 minutes si on souhaite les sessions permanentes)
     PERMANENT_SESSION_LIFETIME = 1800  # 1800 secondes = 30 minutes
-
