@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Nebula Nexus{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Inclusion des différents fichiers CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lore.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/security.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <div class="branding">
+            <h1>Nebula Nexus</h1>
+            <p class="tagline">Là où les esprits se rencontrent sous un ciel étoilé</p>
+        </div>
+        <nav>
+            {% if session.username %}
+                <span>Connecté en tant que <strong>{{ session.username }}</strong></span>
+                <a href="{{ url_for('chat') }}">Chat</a>
+                <a href="{{ url_for('lore') }}">Lore</a>
+                <a href="{{ url_for('security') }}">Sécurité</a>
+                <a href="{{ url_for('logout') }}">Déconnexion</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Connexion</a>
+                <a href="{{ url_for('signup') }}">Inscription</a>
+                <a href="{{ url_for('lore') }}">Lore</a>
+                <a href="{{ url_for('security') }}">Sécurité</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        <!-- Affichage des messages flash -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flashes">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2023 Nebula Nexus - L'Agora cosmique des esprits libres</p>
+    </footer>
+</body>
+</html>

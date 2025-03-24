@@ -1,0 +1,28 @@
+<!-- templates/security.html -->
+{% extends "base.html" %}
+{% block title %}Sécurité - Nebula Nexus{% endblock %}
+{% block content %}
+<div class="security-container">
+    <h2>Sécurité et Confidentialité</h2>
+    <p>
+        Chez Nebula Nexus, la sécurité de vos données et de vos conversations est notre priorité absolue. Nous avons mis en place des technologies avancées pour garantir que vos échanges se déroulent dans un environnement sûr et protégé.
+    </p>
+    <h3>Protection des mots de passe</h3>
+    <p>
+        Vos mots de passe sont hachés avec la technologie <a href="{{ url_for('argon2_secret') }}" class="secret-link">Argon2</a>, qui intègre un salt unique pour chaque utilisateur.
+        Cette méthode robuste empêche les attaques par force brute et par tables de hachage, assurant ainsi la confidentialité de vos identifiants.
+    </p>
+    
+    <h3>Chiffrement des conversations</h3>
+    <p>
+        Toutes vos communications transitent via des connexions sécurisées grâce au protocole TLS/SSL. Nous configurons nos serveurs pour garantir que les données en transit sont chiffrées. De plus, nous explorons activement l'implémentation d'un chiffrement de bout en bout afin que même nos administrateurs ne puissent accéder au contenu de vos messages.
+    </p>
+    <h3>Sécurité des données</h3>
+    <p>
+        Nous appliquons les meilleures pratiques en matière de sécurité informatique : mises à jour régulières de notre infrastructure, audits de sécurité et surveillance continue. Cela nous permet de prévenir et de réagir rapidement à toute tentative d'intrusion.
+    </p>
+    <p>
+        Nebula Nexus s'engage à offrir un espace de partage sécurisé et inspirant, où vos échanges restent privés et protégés. Rejoignez-nous en toute confiance et profitez d'une communication sécurisée et innovante.
+    </p>
+</div>
+{% endblock %}

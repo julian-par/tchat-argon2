@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Chat - Nebula Nexus{% endblock %}
+{% block content %}
+<div class="chat-container">
+    <div id="chatbox">
+        {% for message in messages %}
+            <div class="message">
+                <span class="author">{{ message.author.username }}</span> :
+                <span class="content">{{ message.content }}</span>
+                <span class="timestamp">({{ message.timestamp.strftime("%d/%m/%Y %H:%M:%S") }})</span>
+            </div>
+        {% endfor %}
+    </div>
+    <form method="POST" class="chat-form">
+        <input type="text" name="message" placeholder="Exprimez-vous..." required>
+        <button type="submit">Envoyer</button>
+    </form>
+</div>
+{% endblock %}

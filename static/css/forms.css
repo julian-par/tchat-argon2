@@ -1,0 +1,65 @@
+/* static/css/forms.css */
+
+.form-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container label {
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.form-container input {
+    padding: 12px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-container button {
+    margin-top: 20px;
+    padding: 12px;
+    background: #ffd700;
+    color: #222;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.form-container button:hover {
+    background: #e6c200;
+}
+
+.alt-action {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+.alt-action a {
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: 600;
+}
+

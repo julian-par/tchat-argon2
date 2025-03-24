@@ -1,0 +1,70 @@
+/* static/css/chat.css */
+
+.chat-container {
+    background: rgba(0, 0, 0, 0.7);
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+#chatbox {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.message {
+    margin-bottom: 12px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.message .author {
+    font-weight: 600;
+    color: #ffd700;
+}
+
+.message .content {
+    margin-left: 5px;
+}
+
+.message .timestamp {
+    font-size: 0.8rem;
+    color: #ccc;
+    margin-left: 10px;
+}
+
+.chat-form {
+    display: flex;
+}
+
+.chat-form input[type="text"] {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 1rem;
+}
+
+.chat-form button {
+    padding: 12px 20px;
+    background: #ffd700;
+    color: #222;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.chat-form button:hover {
+    background: #e6c200;
+}
+
