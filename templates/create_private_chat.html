@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Créer un Groupe Privé - Nebula Nexus{% endblock %}
+{% block content %}
+<div class="form-container create-chat">
+    <h2>Créer un Groupe Privé</h2>
+    <form method="POST">
+        <label for="chat_name">Nom du Groupe :</label>
+        <input type="text" id="chat_name" name="chat_name" placeholder="Nom du groupe" required>
+        <label for="is_open">
+            <input type="checkbox" id="is_open" name="is_open">
+            Groupe ouvert aux demandes
+        </label>
+        <button type="submit">Créer le Groupe</button>
+    </form>
+</div>
+{% endblock %}

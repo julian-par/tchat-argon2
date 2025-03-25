@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Gérer le Groupe - Nebula Nexus{% endblock %}
+{% block content %}
+<div class="manage-container">
+    <h2>Gestion des Demandes pour "{{ chat.name }}"</h2>
+    {% if pending_requests %}
+        <ul>
+            {% for req in pending_requests %}
+                <li>
+                    Utilisateur ID: {{ req.user_id }}
+                    <a href="{{ url_for('respond_request', membership_id=req.id, action='accept') }}" class="btn small">Accepter</a>
+                    <a href="{{ url_for('respond_request', membership_id=req.id, action='reject') }}" class="btn small">Rejeter</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucune demande en attente.</p>
+    {% endif %}
+</div>
+{% endblock %}

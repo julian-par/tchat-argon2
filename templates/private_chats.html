@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Chats Privés - Nebula Nexus{% endblock %}
+{% block content %}
+<div class="private-chats-container">
+    <h2>Vos Espaces Privés</h2>
+    <div class="private-chats-actions">
+        <a href="{{ url_for('create_private_chat') }}" class="btn">Créer un Groupe Privé</a>
+    </div>
+    <ul class="chat-list">
+        {% for chat in chats %}
+            <li class="chat-item">
+                <a href="{{ url_for('private_chat', chat_id=chat.id) }}">{{ chat.name }}</a>
+                {% if chat.creator_id == session.user_id %}
+                    <a href="{{ url_for('manage_private_chat', chat_id=chat.id) }}" class="manage-link">(Gérer)</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="open-groups">
+        <h3>Groupes Ouverts</h3>
+        {% if open_groups %}
+            <ul class="chat-list">
+                {% for group in open_groups %}
+                    <li class="chat-item">
+                        <span>{{ group.name }}</span>
+                        <a href="{{ url_for('join_private_chat', chat_id=group.id) }}" class="btn small">Rejoindre</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aucun groupe ouvert actuellement.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/lore.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/security.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/private.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/secrete.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -21,7 +23,8 @@
         <nav>
             {% if session.username %}
                 <span>Connecté en tant que <strong>{{ session.username }}</strong></span>
-                <a href="{{ url_for('chat') }}">Chat</a>
+                <a href="{{ url_for('chat') }}">Chat Public</a>
+                <a href="{{ url_for('private_chats') }}">Chats Privés</a>
                 <a href="{{ url_for('lore') }}">Lore</a>
                 <a href="{{ url_for('security') }}">Sécurité</a>
                 <a href="{{ url_for('auth.logout') }}">Déconnexion</a>
