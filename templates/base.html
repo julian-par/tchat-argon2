@@ -24,7 +24,7 @@
             {% if session.username %}
                 <span>Connecté en tant que <strong>{{ session.username }}</strong></span>
                 <a href="{{ url_for('chat') }}">Chat Public</a>
-                <a href="{{ url_for('private_chats') }}">Chats Privés</a>
+                <a href="{{ url_for('private.private_chats') }}">Chats Privés</a>
                 <a href="{{ url_for('lore') }}">Lore</a>
                 <a href="{{ url_for('security') }}">Sécurité</a>
                 <a href="{{ url_for('auth.logout') }}">Déconnexion</a>

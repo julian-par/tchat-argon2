@@ -5,12 +5,14 @@
     <h2>Créer un Groupe Privé</h2>
     <form method="POST">
         <label for="chat_name">Nom du Groupe :</label>
-        <input type="text" id="chat_name" name="chat_name" placeholder="Nom du groupe" required>
+        <input type="text" id="chat_name" name="chat_name" placeholder="Entrez un nom pour votre groupe" required>
+        
         <label for="is_open">
             <input type="checkbox" id="is_open" name="is_open">
             Groupe ouvert aux demandes
         </label>
-        <button type="submit">Créer le Groupe</button>
+        
+        <button type="submit" class="btn">Créer le Groupe</button>
     </form>
 </div>
 {% endblock %}

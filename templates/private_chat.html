@@ -2,21 +2,30 @@
 {% block title %}Chat Privé - Nebula Nexus{% endblock %}
 {% block content %}
 <div class="private-chat-container">
+    <!-- En-tête du chat -->
     <header class="chat-header">
         <h2>Discussion Privée</h2>
     </header>
+    
+    <!-- Zone d'affichage des messages -->
     <div id="private-chatbox" class="chat-box">
-        {% for message in messages %}
-            <div class="message">
-                <span class="author">{{ message.author.username }}</span>
-                <span class="content">{{ message.content }}</span>
-                <span class="timestamp">{{ message.timestamp.strftime("%d/%m/%Y %H:%M:%S") }}</span>
-            </div>
-        {% endfor %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message">
+                    <span class="author">{{ message.author.username }}</span>
+                    <span class="content">{{ message.content }}</span>
+                    <span class="timestamp">{{ message.timestamp.strftime("%d/%m/%Y %H:%M:%S") }}</span>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-messages">Aucun message pour le moment. Soyez le premier à écrire !</p>
+        {% endif %}
     </div>
+    
+    <!-- Formulaire d'envoi de message -->
     <form method="POST" class="chat-form">
-        <input type="text" name="message" placeholder="Votre message..." required autocomplete="off">
-        <button type="submit">Envoyer</button>
+        <input type="text" name="message" placeholder="Votre message privé..." required autocomplete="off">
+        <button type="submit" class="btn">Envoyer</button>
     </form>
 </div>
 {% endblock %}
