@@ -53,16 +53,28 @@ def security():
 def argon2_secret():
     """Page secrète détaillant le fonctionnement d'Argon2."""
     return render_template('argon2_secret.html')
+
+
 @app.route('/private_chats')
 def private_chats():
-    """Liste tous les chats privés où l'utilisateur est membre et accepté."""
+    """Liste tous les chats privés où l'utilisateur est membre (statut accepté)
+       et affiche les groupes ouverts auxquels il peut envoyer une demande."""
     if 'user_id' not in session:
         return redirect(url_for('login'))
     user_id = session['user_id']
-    # Récupère les groupes dont le status est 'accepted'
+    # Groupes privés où l'utilisateur est déjà membre (status 'accepted')
     memberships = PrivateChatMembership.query.filter_by(user_id=user_id, status='accepted').all()
     chats = [membership.chat for membership in memberships]
-    return render_template('private_chats.html', chats=chats)
+    
+    # Récupérer les groupes ouverts
+    open_groups = PrivateChat.query.filter_by(is_open=True).all()
+    # Exclure les groupes où l'utilisateur a déjà une demande ou est membre
+    open_groups = [
+        group for group in open_groups 
+        if not PrivateChatMembership.query.filter_by(chat_id=group.id, user_id=user_id).first()
+    ]
+    return render_template('private_chats.html', chats=chats, open_groups=open_groups)
+
 
 @app.route('/private_chat/<int:chat_id>', methods=['GET', 'POST'])
 def private_chat(chat_id):
@@ -107,19 +119,26 @@ def create_private_chat():
 def join_private_chat(chat_id):
     """
     Permet à un utilisateur de demander à rejoindre un groupe privé ouvert.
-    Si le groupe n'est pas ouvert, la demande est envoyée au créateur pour validation.
+    Si le groupe n'est pas ouvert, une demande ne peut être envoyée.
     """
     if 'user_id' not in session:
         return redirect(url_for('login'))
+    group = PrivateChat.query.get(chat_id)
+    if not group.is_open:
+        flash("Ce groupe n'est pas ouvert aux demandes d'adhésion.", "warning")
+        return redirect(url_for('private_chats'))
+    
     existing = PrivateChatMembership.query.filter_by(chat_id=chat_id, user_id=session['user_id']).first()
     if existing:
         flash("Vous avez déjà envoyé une demande ou êtes déjà membre de ce groupe.", "warning")
         return redirect(url_for('private_chats'))
+    
     new_membership = PrivateChatMembership(user_id=session['user_id'], chat_id=chat_id, status='pending')
     db.session.add(new_membership)
     db.session.commit()
-    flash("Votre demande a été envoyée.", "info")
+    flash("Votre demande a été envoyée. En attente de validation.", "info")
     return redirect(url_for('private_chats'))
+
 
 @app.route('/manage_private_chat/<int:chat_id>')
 def manage_private_chat(chat_id):
